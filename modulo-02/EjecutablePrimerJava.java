@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Santiago Hadad
  */
-public class Ejecutable {
+public class EjecutablePrimerJava {
     public static void main (String[] args){
     // Definir variables
     int dato;
