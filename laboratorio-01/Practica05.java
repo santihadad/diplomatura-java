@@ -7,7 +7,7 @@ errores por favor reportelos en el foro (http://pseint.sourceforge.net). */
 
 import java.io.*;
 
-public class Practica05 {
+public class practica05 {
 
 	public static void main(String args[]) throws IOException {
 		BufferedReader bufEntrada = new BufferedReader(new InputStreamReader(System.in));

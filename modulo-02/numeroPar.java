@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class ejecutable {
+public class numeroPar {
 
     /**
      * @param args the command line arguments
