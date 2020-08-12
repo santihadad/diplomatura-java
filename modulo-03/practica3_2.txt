@@ -1,0 +1,31 @@
+Proceso practica3_2Robot
+	Definir posicionX, posicionY Como Entero;
+	Definir opcionElegida Como Entero;
+	// Inicializamos la posicion del robot
+	posicionX <- azar(100);
+	posicionY <- azar(100);
+	Repetir
+		Escribir "TITO esta en (",posicionX,";",posicionY,")";
+		Escribir "1.Girar al norte y avanzar 10 pasos";
+		Escribir "2.Girar al sur y avanzar 20 pasos";
+		Escribir "3.Girar al este y avanzar 10 pasos";
+		Escribir "4.Girar al oeste y avanzar 20 pasos";
+		Escribir "5.Salir";
+		// Leer opcion que eliga usuario
+		Leer opcionElegida;
+		Segun opcionElegida Hacer
+			1:
+				posicionY = posicionY + 10;
+			2:
+				posicionY = posicionY - 20;
+			3:
+				posicionX = posicionX + 10;
+			4:
+				posicionX = posicionX - 20;
+			5:
+				Escribir "Programa finalizado, adios TITO";
+			De Otro Modo:
+				Escribir "Ingrese una opcion correcta: 1,2,3,4 o 5";
+		FinSegun
+	Hasta Que opcionElegida == 5;
+FinProceso
