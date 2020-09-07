@@ -4,12 +4,12 @@ public class Revista extends Publicacion {
     private int codigo;
 
     public Revista() {
-        //super(); no es necesario llamarlo ya que lo agrega Java.
-        codigo = 0;
+        //super(); no sería necesario llamarla, me lo agrega Java automáticamente
+        codigo = 1;
     }
 
-    public Revista(String titulo, int paginas, int codigo) {
-        super(titulo, paginas); // llamar al constructor padre
+    public Revista(int codigo, String titulo, int paginas) {
+        super(titulo, paginas);//llamar al constructor de la clase padre:
         this.codigo = codigo;
     }
 
@@ -23,6 +23,7 @@ public class Revista extends Publicacion {
 
     @Override
     public String toString() {
+        //Especializando el comportamiento toString()
         return "Revista " + super.toString();
     }
 }

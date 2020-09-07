@@ -36,6 +36,6 @@ public class Publicacion {
 
     @Override
     public String toString() {
-        return "Titulo: " + titulo + " con " + paginas + "paginas";
+        return "Título: " + titulo + " con " + paginas + "páginas";
     }
 }

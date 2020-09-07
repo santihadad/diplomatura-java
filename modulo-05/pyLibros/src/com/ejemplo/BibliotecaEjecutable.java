@@ -4,7 +4,7 @@ import com.ejemplo.dominio.Libro;
 
 import java.util.Scanner;
 
-public class Biblioteca {
+public class BibliotecaEjecutable {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in); // para cadenas
         Scanner entrada2 = new Scanner(System.in); // para otros tipos de variables
@@ -48,8 +48,5 @@ public class Biblioteca {
         for (int i = 0; i < estanteria.length; i++) {
             System.out.println("Libro " + (i + 1) + ": " + estanteria[i].toString());
         }
-
     }
-
 }
-
