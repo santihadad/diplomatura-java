@@ -2,12 +2,14 @@ package com.ejemplo;
 
 import com.ejemplo.dominio.Caminera;
 import com.ejemplo.dominio.Multa;
+import com.ejemplo.gui.JFMultas;
 
 import java.util.Scanner;
 
 public class Ejecutable {
 
     public static void main(String[] args) {
+        /*
         //Variables
         int n; //total de multas a procesar
         Scanner entrada = new Scanner(System.in);
@@ -57,6 +59,10 @@ public class Ejecutable {
         }
 
         System.out.println(oCaminera.mostrarMayorCodigo());
+        */
+        
+        JFMultas principal = new JFMultas();
+        principal.setVisible(true);
 
     }
 }
