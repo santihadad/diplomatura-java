@@ -1,21 +1,19 @@
 package com.ejemplo.dominio;
 
-public class Caminera {
-    private Multa multas[];
-    private int ultimaCarga;
+import java.util.ArrayList;
 
-    public Caminera(int cantidad) {
-        multas = new Multa[cantidad];
+public class Caminera {
+    private ArrayList<Multa> multas;
+
+    public Caminera() {
+        multas = new ArrayList<>(); // Lista vacia de objetos multa
     }
 
-    public boolean registrarMulta(Multa multa) {
-        boolean aux = false;
-        if (ultimaCarga < multas.length) {
-            multas[ultimaCarga] = multa;
-            aux = true;
-            ultimaCarga++;
+    public boolean registrarMulta(Multa x) {
+        if (multas.contains(x)) {
+            return false;
         }
-        return aux;
+        return multas.add(x);
     }
 
     public float calcularTotal() {
@@ -32,8 +30,8 @@ public class Caminera {
         int conteo[] = new int[20];
         int pos;
         //contar codigos de actas labradas
-        for (int i = 0; i < multas.length; i++) {
-            pos = multas[i].getCodigo() - 1;
+        for (int i = 0; i < multas.size(); i++) {
+            pos = multas.get(i).getCodigo() - 1;
             conteo[pos]++;
         }
 
@@ -55,6 +53,17 @@ public class Caminera {
         }
         aux = "Codigo de infraccion mas frecuente: " + codMay + ", con: " + may + " actas labradas";
         return aux;
+    }
+    
+    public String mostrarMultas (){
+        StringBuilder aux = new StringBuilder("");
+ 
+        for (Multa x : multas){
+            if (x != null) {
+              aux.append(x.toString()).append ("\n");
+            }
+        }
+        return aux.toString();
     }
 }
 

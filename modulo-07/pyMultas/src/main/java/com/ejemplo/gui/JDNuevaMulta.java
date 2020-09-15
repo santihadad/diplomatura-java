@@ -7,6 +7,7 @@ package com.ejemplo.gui;
 
 import com.ejemplo.dominio.Caminera;
 import com.ejemplo.dominio.Multa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ public class JDNuevaMulta extends javax.swing.JDialog {
     public JDNuevaMulta(java.awt.Frame parent, boolean modal, Caminera oCaminera) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         this.oCaminera = oCaminera;
     }
 
@@ -36,10 +38,10 @@ public class JDNuevaMulta extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtActa = new javax.swing.JTextField();
-        jtCodigo = new javax.swing.JTextField();
         jtMonto = new javax.swing.JTextField();
         jbAceptar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
+        jcCodigo = new javax.swing.JComboBox<>();
 
         jLabel3.setText("Acta");
 
@@ -52,6 +54,18 @@ public class JDNuevaMulta extends javax.swing.JDialog {
 
         jLabel4.setText("Monto:");
 
+        jtActa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtActaKeyTyped(evt);
+            }
+        });
+
+        jtMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMontoKeyTyped(evt);
+            }
+        });
+
         jbAceptar.setText("Aceptar");
         jbAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +77,13 @@ public class JDNuevaMulta extends javax.swing.JDialog {
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCancelarActionPerformed(evt);
+            }
+        });
+
+        jcCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        jcCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCodigoActionPerformed(evt);
             }
         });
 
@@ -82,10 +103,10 @@ public class JDNuevaMulta extends javax.swing.JDialog {
                         .addComponent(jbAceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbCancelar)
-                        .addContainerGap(76, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcCodigo, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE)
                             .addComponent(jtActa)
                             .addComponent(jtMonto))
                         .addGap(76, 76, 76))))
@@ -100,7 +121,7 @@ public class JDNuevaMulta extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -123,15 +144,47 @@ public class JDNuevaMulta extends javax.swing.JDialog {
         int acta, codigo;
         float monto;
         
+        if(jtActa.getText().equals("") || jtMonto.getText().equals("") || jcCodigo.getSelectedIndex()<=0 ){
+            JOptionPane.showMessageDialog(this, "Olvido ingresar un valor", "Validacion", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         acta = Integer.parseInt(jtActa.getText());
-        codigo = Integer.parseInt(jtCodigo.getText());
+        
+        codigo = Integer.parseInt(jcCodigo.getSelectedItem().toString());
+
         monto = Float.parseFloat(jtMonto.getText());
         
         Multa oMulta = new Multa(acta, codigo, monto);
         boolean exito =  oCaminera.registrarMulta(oMulta);
+        
+       if(exito == true){
+           JOptionPane.showMessageDialog(this, "Multa regsitrada");
+           this.dispose();
+       } else{
+           JOptionPane.showMessageDialog(this, "No se pudo registrar la multa");
+       }
     }//GEN-LAST:event_jbAceptarActionPerformed
 
+    private void jtActaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtActaKeyTyped
+        validarNumero(evt);
+    }//GEN-LAST:event_jtActaKeyTyped
 
+    private void jtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMontoKeyTyped
+        validarNumero(evt);
+    }//GEN-LAST:event_jtMontoKeyTyped
+
+    private void jcCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcCodigoActionPerformed
+
+    private void validarNumero(java.awt.event.KeyEvent evt){
+        char tecla = evt.getKeyChar();
+        if(Character.isDigit(tecla) == false){
+            evt.consume();
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -139,8 +192,8 @@ public class JDNuevaMulta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbAceptar;
     private javax.swing.JButton jbCancelar;
+    private javax.swing.JComboBox<String> jcCodigo;
     private javax.swing.JTextField jtActa;
-    private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtMonto;
     // End of variables declaration//GEN-END:variables
 }
