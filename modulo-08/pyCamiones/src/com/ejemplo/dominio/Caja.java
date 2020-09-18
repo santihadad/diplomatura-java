@@ -7,13 +7,12 @@ package com.ejemplo.dominio;
 
 /**
  *
- * @author Santiago
+ * @author MARTIN
  */
-public class Caja extends Carga {
-
+public class Caja extends Carga{
     private float peso;
 
-    public Caja(float peso, String contenido) {
+    public Caja(String contenido, float peso) {
         super(contenido);
         this.peso = peso;
     }
@@ -21,7 +20,7 @@ public class Caja extends Carga {
     public void setPeso(float peso) {
         this.peso = peso;
     }
-
+    
     @Override
     public float calcularPeso() {
         return peso;
@@ -29,7 +28,6 @@ public class Caja extends Carga {
 
     @Override
     public String toString() {
-        return super.toString() + " |Peso: " + peso;
+        return super.toString() + " |Peso" +  peso;
     }
-
 }

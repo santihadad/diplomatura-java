@@ -7,9 +7,9 @@ package com.ejemplo.dominio;
 
 /**
  *
- * @author Santiago
+ * @author MARTIN
  */
-public abstract class Carga {
+public abstract class Carga implements Comparable<Carga> {
 
     private final String contenido;
 
@@ -26,6 +26,18 @@ public abstract class Carga {
     @Override
     public String toString() {
         return "Carga con: [" + contenido + "]";
+    }
+
+    //Exponer un criterio de comparacion
+    @Override
+    public int compareTo(Carga t) {
+        int criterio = 0;
+        if (this.calcularPeso() > t.calcularPeso()) {
+            criterio = 1;
+        } else if (this.calcularPeso() < t.calcularPeso()) {
+            criterio = -1;
+        }
+        return criterio;
     }
 
 }
